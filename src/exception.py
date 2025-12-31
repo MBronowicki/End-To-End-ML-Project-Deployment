@@ -1,6 +1,9 @@
 import sys
 import traceback
 from typing import Optional
+from logger import get_logger
+
+logger = get_logger() # here we can pass name="mlproject" or different module name
 
 class CustomException(Exception):
     """
@@ -17,12 +20,15 @@ class CustomException(Exception):
         self.include_traceback = include_traceback
 
         # Build message only if we have traceback info
-        exc_type, exc_value, exc_tb = sys.exc_info()
+        _,_, exc_tb = sys.exc_info()
         if exc_tb is None:
             # No traceback available; just use the original error message
             self.message = f"{type(error).__name__}: {error}"
         else:
             self.message = self._format_error(exc_tb, error, include_traceback)
+
+        # Log automatically whenever this exception is created
+        logger.error(self.message)
 
         super().__init__(self.message)
 
