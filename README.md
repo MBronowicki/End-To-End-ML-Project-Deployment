@@ -49,6 +49,8 @@ Deploys the trained model to AWS for real-world inference.
 - Containerizing ML applications with Docker
 
 ---
+# On macOS, install OpenMP
+brew install libomp
 
 <!-- ## 📌 Future Improvements
 
