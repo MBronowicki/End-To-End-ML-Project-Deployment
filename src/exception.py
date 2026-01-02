@@ -1,7 +1,7 @@
 import sys
 import traceback
 from typing import Optional
-from logger import get_logger
+from src.logger import get_logger
 
 logger = get_logger() # here we can pass name="mlproject" or different module name
 
@@ -56,10 +56,3 @@ class CustomException(Exception):
 
     def __str__(self) -> str:
         return self.message
-    
-if __name__ == "__main__":
-
-    try:
-        x = 1 / 0
-    except Exception as e:
-        raise CustomException(e, include_traceback=False)

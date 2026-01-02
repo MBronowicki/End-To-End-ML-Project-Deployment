@@ -4,7 +4,7 @@ import logging
 from datetime import datetime
 from logging.handlers import TimedRotatingFileHandler
 
-def get_logger(name: str = "mlproject", log_dir: str = "../logs", level: int = logging.INFO) -> logging.Logger:
+def get_logger(name: str = "mlproject", log_dir: str = "logs", level: int = logging.INFO) -> logging.Logger:
     """
     Creates and returns a configured logger instance.
     Logs to both console and a daily rotating file with 7-day backup
