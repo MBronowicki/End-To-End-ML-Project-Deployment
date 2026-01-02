@@ -5,6 +5,7 @@ from dataclasses import dataclass
 
 from src.exception import CustomException
 from src.logger import get_logger
+from src.components.data_transformation import DataTransformation
 
 logger = get_logger()
 
@@ -38,4 +39,15 @@ class DataIngestion:
             )
         except Exception as e:
             raise CustomException(e)
+        
+if __name__=="__main__":
 
+    obj=DataIngestion()
+    train_path, test_path = obj.initiate_data_ingestion()
+    print(train_path)
+
+    data_transformation=DataTransformation()
+    train_arr, test_arr,_= data_transformation.initiate_data_transformation(train_path, test_path)
+
+    logger.info(f"train_arr: {train_arr.shape}")
+    logger.info(f"test_arr: {test_arr.shape}")
