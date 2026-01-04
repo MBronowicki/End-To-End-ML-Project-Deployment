@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from src.exception import CustomException
 from src.logger import get_logger
 from src.components.data_transformation import DataTransformation
+from src.components.model_trainer import ModeTrainer
 
 logger = get_logger()
 
@@ -51,3 +52,7 @@ if __name__=="__main__":
 
     logger.info(f"train_arr: {train_arr.shape}")
     logger.info(f"test_arr: {test_arr.shape}")
+
+    model_trainer = ModeTrainer()
+
+    best_model_name, best_model_r2_score = model_trainer.initiate_model_trainer(train_arr, test_arr)
