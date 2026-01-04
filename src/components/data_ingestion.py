@@ -7,6 +7,7 @@ from src.exception import CustomException
 from src.logger import get_logger
 from src.components.data_transformation import DataTransformation
 from src.components.model_trainer import ModeTrainer
+from src.utils import load_config
 
 logger = get_logger()
 
