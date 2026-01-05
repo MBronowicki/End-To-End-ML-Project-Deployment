@@ -11,6 +11,17 @@ logger = get_logger()
 #-----------------------------------------------------------------#
 # SAVE OBJECT
 #-----------------------------------------------------------------#
+def load_object(file_path):
+    try:
+        with open(file_path, "rb") as f:
+            return pickle.load(f)
+    except Exception as e:
+        raise CustomException(e)
+
+
+#-----------------------------------------------------------------#
+# SAVE OBJECT
+#-----------------------------------------------------------------#
 
 def save_object(file_path, obj):
     try:
@@ -29,6 +40,7 @@ def save_object(file_path, obj):
 def evaluate_models(X_train, y_train, X_test, y_test, models, params):
     try:
         report = {}
+        trained_models = {}
 
         for model_name, model_class in models.items():
            
@@ -59,7 +71,9 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, params):
             logger.info(f"R2 Score on Test Set: {test_model_score:.2f}")
 
             report[model_name] = test_model_score
-        return report
+            trained_models[model_name] = model
+
+        return report, trained_models
     
     except Exception as e:
         raise CustomException(e)
@@ -69,4 +83,7 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, params):
 #-----------------------------------------------------------------#
 
 def load_config(path: str):
-    return toml.load(path)
+    try:
+        return toml.load(path)
+    except Exception as e:
+        raise CustomException(e)

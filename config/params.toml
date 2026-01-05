@@ -1,5 +1,6 @@
 [artifacts]
 trained_model_file_path = "artifacts/best_model.pkl"
+preprocessor_path = "artifacts/preprocessor.pkl"
 
 [models.RandomForest]
 n_estimators = [8, 16, 32, 64, 128, 256]
