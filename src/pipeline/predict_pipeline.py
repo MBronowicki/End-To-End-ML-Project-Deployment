@@ -23,7 +23,7 @@ class PredictPipeline:
 
             data_scaled = preprocessor.transform(features)
             preds = model.predict(data_scaled)
-            return round(preds[0],ndigits=2)
+            return preds
         
         except Exception as e:
             raise CustomException(e)
