@@ -26,7 +26,6 @@ def predict_datapoint():
             writing_score=request.form.get("writing_score")
         )
         pred_df=data.get_data_as_dataframe()
-        print(pred_df)
 
         predict_pipeline=PredictPipeline()
         predictions = predict_pipeline.predict(pred_df)
